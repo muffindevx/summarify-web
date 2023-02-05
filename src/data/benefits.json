@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Dream tool",
+    "description": "With Summarify you can generate summaries fo your notes, youtube videos, and podcast audios.",
+    "image": "/images/teaching.svg"
+  },
+  {
+    "title": "Easy and Friendly",
+    "description": "Out platform was built think of easy way to generate summaries with less effort.",
+    "image": "/images/multitasking.svg"
+  },
+  {
+    "title": "Everything in one place",
+    "description": " We this tool you do not need to search another tools to do your summaries. With Summarify you do everythinh in one place.",
+    "image": "/images/elements.svg"
+  }
+]

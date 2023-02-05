@@ -1,0 +1,51 @@
+---
+import Benefit from '../components/Benefit.astro';
+import Jumbo from '../components/Jumbo.astro';
+import Layout from '../components/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Panel from '../components/Panel.astro';
+import benefits from '../data/benefits.json';
+---
+
+<Layout
+  title="Summarify: A easy way to summary your notes, podcast, and audios"
+>
+  <header
+    class="flex flex-col place-content-center bg-amber-50 dark:bg-gray-900 mx-auto max-w-5xl px-4 py-4"
+  >
+    <Navigation />
+    <Jumbo />
+  </header>
+  <main class="container mx-auto max-w-5xl bg-slate-100 dark:bg-gray-800">
+    <Panel id="benefits">
+      <h2
+        class="dark:text-slate-100 text-2xl text-center font-bold mb-8 md:text-4xl"
+      >
+        Benefits
+      </h2>
+      {
+        benefits.map((benefit, index) => {
+          const figure_class =
+            index % 2 === 0 ? 'order-1 md:order-2' : 'md:w-7/12 order-1';
+
+          const details_class =
+            index % 2 === 0
+              ? 'order-2 mt-8 md:mt-0 md:order-1'
+              : 'order-2 mt-8 md:mt-0';
+
+          return (
+            <Benefit
+              title={benefit.title}
+              description={benefit.description}
+              image={benefit.image}
+              classes={{
+                figure: figure_class,
+                details: details_class,
+              }}
+            />
+          );
+        })
+      }
+    </Panel>
+  </main>
+</Layout>
