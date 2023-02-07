@@ -17,6 +17,11 @@ const Summarize = () => {
     if (evt.currentTarget.files) {
       const file = evt.currentTarget.files[0];
 
+      batch(() => {
+        set_summary(undefined);
+        set_error('');
+      });
+
       if (!file) return;
 
       if (file.size === 0) {
@@ -66,7 +71,7 @@ const Summarize = () => {
 
   return (
     <ErrorBoundary fallback={<div>Something went terribly wrong</div>}>
-      <section class="container mx-auto max-w-6xl">
+      <section class="container mx-auto max-w-6xl px-3 md:px-0">
         <div class="my-4 p-4 rounded-lg border-2 border-dashed border-red-600">
           <p class="text-sm font-semibold text-red-600">
             This process can take time. Remember that transcription and
@@ -116,14 +121,16 @@ const Summarize = () => {
           <div class="flex justify-between items-center mt-4 p-4 bg-slate-100 shadow-md rounded-lg">
             <div class="flex flex-col">
               <section class="flex items-center">
-                <figure class="w-8 h-8 mr-6">
+                <figure class="w-6 h-6 mr-6 sm:w-8 sm:h-8">
                   <img
                     src="/icons/musical-notes-outline.svg"
                     alt="Icon to indicate that this file is an audio"
                   />
                 </figure>
-                <article class="flex flex-col">
-                  <p class="text-md font-semibold">{audio_file()?.name}</p>
+                <article class="flex flex-col flex-nowrap sm:flex-wrap">
+                  <p class="text-md font-semibold truncate w-60 sm:w-auto">
+                    {audio_file()?.name}
+                  </p>
                   <span class="text-sm font-semibold text-slate-600">
                     {convert_mb(audio_file()?.size)}
                   </span>
@@ -159,9 +166,9 @@ const Summarize = () => {
           </button>
         </div>
       </section>
-      <section class="container mx-auto max-w-6xl">
-        <div class="flex flex-row gap-4 mt-8 mb-8">
-          <section class="flex flex-col flex-1">
+      <section class="container mx-auto max-w-6xl px-3 md:px-0">
+        <div class="flex flex-col md:flex-row gap-0 md:gap-4 mt-8 mb-8">
+          <section class="flex flex-col flex-1 order-2 md:order-1">
             <header class="flex justify-between items-end p-2">
               <h3 class="text-md font-bold">
                 Transcribe Audio{' '}
@@ -189,7 +196,7 @@ const Summarize = () => {
               </Show>
             </Show>
           </section>
-          <section class="flex flex-col flex-1">
+          <section class="flex flex-col flex-1 order-1 md:order-2">
             <header class="flex justify-between items-end p-2">
               <h3 class="text-md font-bold">
                 Summary Audio{' '}
