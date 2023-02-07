@@ -4,6 +4,7 @@ export type SummaryResponse = {
 };
 
 const fetch_summarize = async (audio: File): Promise<SummaryResponse> => {
+  console.log(import.meta.env.PUBLIC_API_URL);
   const form_data = new FormData();
   form_data.append('audio', audio);
 

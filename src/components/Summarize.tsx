@@ -3,7 +3,7 @@ import { createSignal, batch, ErrorBoundary, Show } from 'solid-js';
 import { convert_mb, fetch_summarize, SummaryResponse } from '../lib/audio';
 import LoadingSpinner from './LoadingSpinner';
 
-const MAX_AUDIO_SIZE = 4000000;
+const MAX_AUDIO_SIZE = 1000000;
 
 const Summarize = () => {
   const [audio_file, set_audio_file] = createSignal<File>();
@@ -29,7 +29,7 @@ const Summarize = () => {
       }
 
       if (file.size > MAX_AUDIO_SIZE) {
-        set_error('This file is too large');
+        set_error('This file is greater than 1 MB.');
       }
 
       set_audio_file(file);
@@ -105,7 +105,7 @@ const Summarize = () => {
                 drop
               </p>
               <p class="text-xs text-gray-500 dark:text-gray-400">
-                WAV, MP3 or MP4 (Max. 4MB)
+                WAV, MP3 or MP4 (Max. 1MB)
               </p>
             </div>
             <input

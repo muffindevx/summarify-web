@@ -6,9 +6,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "deno run --allow-net --allow-read ./dist/server/entry.mjs",
+    "preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "astro": "astro",
-    "deno-deploy": "pnpm run build && deployctl deploy --project=muffindevx-summarify-web --no-static --include=./dist ./dist/server/entry.mjs"
+    "deno-deploy": "pnpm run build && deployctl deploy --project=muffindevx-summarify-web --allow-env --no-static --include=./dist ./dist/server/entry.mjs"
   },
   "dependencies": {
     "@astrojs/solid-js": "^2.0.2",
