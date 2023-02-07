@@ -3,6 +3,9 @@ export type SummaryResponse = {
   summary: string;
 };
 
+const controller = new AbortController();
+const id = setTimeout(() => controller.abort(), 45000);
+
 const fetch_summarize = async (audio: File): Promise<SummaryResponse> => {
   const form_data = new FormData();
   form_data.append('audio', audio);
@@ -10,6 +13,7 @@ const fetch_summarize = async (audio: File): Promise<SummaryResponse> => {
   const response = await fetch(`${import.meta.env.PUBLIC_API_URL}/summarize`, {
     method: 'POST',
     body: form_data,
+    signal: controller.signal,
   });
 
   const data = await response.json();
@@ -17,6 +21,7 @@ const fetch_summarize = async (audio: File): Promise<SummaryResponse> => {
     return data;
   }
 
+  clearInterval(id);
   throw new Error(data.message);
 };
 
